@@ -1,0 +1,6 @@
+---
+- name: Setup standalone central node
+  script: "standalone_central.sh &> standalone_central.log"
+
+- name: Extract info from central node
+  script: "extract_info_central.sh"

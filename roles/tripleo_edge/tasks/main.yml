@@ -1,0 +1,26 @@
+---
+- include_tasks: setup.yml
+
+- include_tasks: setup_central.yml
+  when: inventory_hostname in groups['central']
+
+- name: Extract info from central node
+  script: "extract_info_central.sh"
+  when: inventory_hostname in groups['central']
+
+- name: Fetch data to local to be pushed to edge nodes
+  fetch:
+    src: "{{ ansible_user_dir }}/export_control_plane.tar.gz"
+    dest: export_control_plane.tar.gz
+    flat: true
+  when: inventory_hostname in groups['central']
+
+- name: send data to edge nodes
+  copy:
+    src: export_control_plane.tar.gz
+    dest: "{{ ansible_user_dir }}/export_control_plane.tar.gz"
+  when: inventory_hostname in groups['edge']
+
+- include_tasks: setup_edge.yml
+  when: inventory_hostname in groups['edge']
+

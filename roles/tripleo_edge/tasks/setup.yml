@@ -1,0 +1,7 @@
+---
+- name: Run setup script 
+  script: "setup.sh &> setup.log"
+
+- name: Run standalone setup script 
+  script: "standalone_setup.sh &> standalone_setup.log"
+

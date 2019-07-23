@@ -1,0 +1,4 @@
+---
+- hosts: central:edge
+  roles:
+    - role: tripleo_edge

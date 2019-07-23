@@ -1,0 +1,5 @@
+[central]
+38.145.33.136 ansible_ssh_user=centos
+
+[edge]
+38.145.34.226 ansible_ssh_user=centos
